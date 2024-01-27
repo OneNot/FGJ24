@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
         //spinning weapon
         if (weaponOnCooldown){
             spinnercount += 100 * Time.deltaTime;
-            weapon.transform.Rotate(new Vector3(0,0,-1000 * Time.deltaTime));
+            weapon.transform.Rotate(new Vector3(0,0,(-1000 * Time.deltaTime)));
             if(spinnercount >= 36)
             {
                 canBounceAgain = true;
@@ -104,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetFloat("walkspeed", Mathf.Abs(rb.velocity.x));
             if ( Mathf.Abs(rb.velocity.x) < maxWalkSpeed )
-                rb.AddForce(new Vector2(axis*10,0));
+                rb.AddForce(new Vector2((axis*10) * (1000 * Time.deltaTime),0));
             //if (axis < 0.5 && axis > -0.5)
                 //rb.velocity = new Vector2(Time.deltaTime * rb.velocity.x * 0.1f, rb.velocity.y);
             //else
