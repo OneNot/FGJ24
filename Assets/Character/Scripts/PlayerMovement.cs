@@ -159,7 +159,10 @@ public class PlayerMovement : MonoBehaviour
             Vector2 direction = weaponTip.transform.position-transform.position;
             if(grounded)
             {
-                direction = Quaternion.AngleAxis(groundedAngleBounce, direction).eulerAngles;
+                if (facingRight)
+                    direction = Quaternion.AngleAxis(groundedAngleBounce, direction).eulerAngles;
+                else
+                    direction = Quaternion.AngleAxis(groundedAngleBounce, direction).eulerAngles; //TODO here
             }
             else
             {
@@ -169,7 +172,6 @@ public class PlayerMovement : MonoBehaviour
 
             rb.AddForce(direction * (100 * bounceMult));
         }
-        
     }
 
     private void OnDisable() {
