@@ -30,7 +30,10 @@ public class SplineFollow : MonoBehaviour
 
     [SerializeField]
     private MoveDirection initialMoveDirection = MoveDirection.Positive;
+
     private int moveDirection = 1;
+    [HideInInspector]
+    public float finalMoveSpeed;
 
 
     private void Awake()
@@ -50,9 +53,9 @@ public class SplineFollow : MonoBehaviour
     {
         float acceleration = accelerationCurve.Evaluate(currentPositionOnSpline);
 
-        float move = Time.deltaTime * realMoveSpeed * moveDirection * acceleration;
+        finalMoveSpeed = Time.deltaTime * realMoveSpeed * moveDirection * acceleration;
         //get 0-1 position on spline from current 0-1 position on spline +/- move
-        float targetPositionOnSpline = Mathf.Clamp01(currentPositionOnSpline + move);
+        float targetPositionOnSpline = Mathf.Clamp01(currentPositionOnSpline + finalMoveSpeed);
 
         transform.position = GetWorldPointFromSplinePoint(targetPositionOnSpline);
 
