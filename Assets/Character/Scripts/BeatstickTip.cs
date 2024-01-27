@@ -7,9 +7,9 @@ public class BeatstickTip : MonoBehaviour
     [SerializeField] private PlayerMovement playerMovement;
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.CompareTag("HitTarget") && playerMovement.canBounceAgain == true)
+        if(true) 
         {
-            playerMovement.WeaponTriggered();
+            playerMovement.WeaponTrigger();
             //other.attachedRigidbody.gameObject.SetActive(false);
         }
     }

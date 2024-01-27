@@ -1,10 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    //animation
+    [SerializeField] private Animator animator;
+
+
     //references
     [SerializeField] Rigidbody2D rb;
     [SerializeField] GameObject weapon;
@@ -12,26 +18,27 @@ public class PlayerMovement : MonoBehaviour
 
     //ground movement
     [SerializeField] float speed = 1;
+    [SerializeField] float maxWalkSpeed = 10;
     [SerializeField] bool grounded = false;
+    [SerializeField] bool facingRight = true;
 
-    bool facingRight = true;
-
-    //attack
-    Vector3 startRotation;
-    bool weaponOnCooldown = false;
-    public bool canBounceAgain = true;
-    float spinnercount = 0;
+    //vault
+    [SerializeField] bool weaponOnCooldown = false;
+    [SerializeField] public bool canBounceAgain = true;
+    [SerializeField] float spinnercount = 0;
+    [SerializeField] float bounceMult = 1;
+    [SerializeField] float groundedAngleBounce;
+    [SerializeField] float midairAngleBounce;
+    
     
     //dash
     [SerializeField] private float DashMult = 1;
-    bool canDashAgain = false;
-
-
+    [SerializeField] bool canDashAgain = false;
+    [SerializeField] float originalGravityScale = 2;
 
     // Start is called before the first frame update
     void Start()
     {
-        startRotation = weapon.transform.rotation.eulerAngles;
         weaponOnCooldown = false;
         canBounceAgain = true;
     }
@@ -44,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
          {
             if (grounded == false)
             {
+                animator.SetBool("grounded", true);
                 canDashAgain = false;
                 grounded = true;
             }
@@ -52,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
          {
             if (grounded == true)
             {
+                animator.SetBool("grounded", false);
                 canDashAgain = true;
                 grounded = false;
             }
@@ -93,7 +102,8 @@ public class PlayerMovement : MonoBehaviour
 
         if(grounded == true)
         {
-            if ( Mathf.Abs(rb.velocity.x) < 5 )
+            animator.SetFloat("walkspeed", Mathf.Abs(rb.velocity.x));
+            if ( Mathf.Abs(rb.velocity.x) < maxWalkSpeed )
                 rb.AddForce(new Vector2(axis*10,0));
             //if (axis < 0.5 && axis > -0.5)
                 //rb.velocity = new Vector2(Time.deltaTime * rb.velocity.x * 0.1f, rb.velocity.y);
@@ -125,23 +135,41 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator SetGravityScaleAfterDelay ()
     {
         yield return new WaitForSeconds(0.1f);
-        rb.gravityScale = 1;
+        rb.gravityScale = originalGravityScale;
     }
         
     private void WeaponAttackPlay () 
     {
         if (weaponOnCooldown == false)
         {
+            canBounceAgain = true;
             weaponOnCooldown = true;
             spinnercount = 0;
         }
     }
     
-    public void WeaponTriggered ()
+    public void WeaponTrigger ()
     {
-        canBounceAgain = false;
-        canDashAgain = true;
-        rb.AddForce((weaponTip.transform.position-transform.position) * 300);
+        Debug.Log("" + weaponOnCooldown + " " + canBounceAgain);
+        if(weaponOnCooldown && canBounceAgain)
+        {
+            canBounceAgain = false;
+            canDashAgain = true;
+
+            Vector2 direction = weaponTip.transform.position-transform.position;
+            if(grounded)
+            {
+                direction = Quaternion.AngleAxis(groundedAngleBounce, direction).eulerAngles;
+            }
+            else
+            {
+                direction = Quaternion.AngleAxis(midairAngleBounce, direction).eulerAngles;
+            }
+            Debug.Log(direction);
+
+            rb.AddForce(direction * (100 * bounceMult));
+        }
+        
     }
 
     private void OnDisable() {
