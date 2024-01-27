@@ -29,8 +29,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public bool canBounceAgain = true;
     [SerializeField] float spinnercount = 0;
     [SerializeField] float bounceMult = 1;
-    [SerializeField] float groundedAngleBounce;
-    [SerializeField] float midairAngleBounce;
+    //[SerializeField] float groundedAngleBounce;
+    //[SerializeField] float midairAngleBounce;
     
     
     //dash
