@@ -1047,6 +1047,9 @@ GameObject:
   - component: {fileID: 1042270550417813872}
   - component: {fileID: 7146911779755283993}
   - component: {fileID: 5148789447609175858}
+  - component: {fileID: 2544537235205775833}
+  - component: {fileID: 2318034005539104206}
+  - component: {fileID: 2775747147339103602}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -1203,6 +1206,164 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!81 &2544537235205775833
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4818189720198367691}
+  m_Enabled: 1
+--- !u!82 &2318034005539104206
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4818189720198367691}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 207
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &2775747147339103602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4818189720198367691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc6156a499662f348853a4fd12a2aef5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rubberChickenNoises:
+  - alias: RubberChicken1
+    clip: {fileID: 8300000, guid: 9857b7ded8d88204d964e634444f54fa, type: 3}
+    volumeScale: 1
+  - alias: RubberChicken2
+    clip: {fileID: 8300000, guid: b4b17954087fda946a0f6a47f6299f4a, type: 3}
+    volumeScale: 1
+  - alias: RubberChicken3
+    clip: {fileID: 8300000, guid: 921d2f8d396c1ab46bad1e3742007623, type: 3}
+    volumeScale: 1
+  - alias: RubberChicken4
+    clip: {fileID: 8300000, guid: 617336637391f6c42a22bc1a50ae669b, type: 3}
+    volumeScale: 1
+  - alias: RubberChicken5
+    clip: {fileID: 8300000, guid: 78aa32f3337ed694c94ddae04f4edf2b, type: 3}
+    volumeScale: 1
+  dashNoises:
+  - alias: Dash1
+    clip: {fileID: 8300000, guid: b8b7e296ea47b4849bf12352a24428ed, type: 3}
+    volumeScale: 1
+  - alias: Dash2
+    clip: {fileID: 8300000, guid: 45d0ea347bb670b44aa68aab2ce9c9f4, type: 3}
+    volumeScale: 1
+  - alias: Dash3
+    clip: {fileID: 8300000, guid: 2b343c0d87a4815488dc05cda4a94295, type: 3}
+    volumeScale: 1
+  - alias: Dash4_fart
+    clip: {fileID: 8300000, guid: ff688d292e7e08a43a29d731a6489547, type: 3}
+    volumeScale: 1
+  shoeNoises:
+  - alias: ShoeNoise1
+    clip: {fileID: 8300000, guid: 9bbc29b3a8ed0aa4ca5d020a1549f264, type: 3}
+    volumeScale: 1
+  - alias: ShoeNoise2
+    clip: {fileID: 8300000, guid: e0fbfab33f1478443b4c0e3cb79d262d, type: 3}
+    volumeScale: 1
+  - alias: ShoeNoise3
+    clip: {fileID: 8300000, guid: 5c2dcfa7ac76b914ca9ccd653859b71b, type: 3}
+    volumeScale: 1
+  - alias: ShoeNoise4
+    clip: {fileID: 8300000, guid: 98f597edf702c124b9a07872ada69a08, type: 3}
+    volumeScale: 1
 --- !u!1 &5513176150753548265
 GameObject:
   m_ObjectHideFlags: 0
