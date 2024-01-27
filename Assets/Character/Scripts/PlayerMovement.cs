@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     }
     [SerializeField] GameObject removeme;
     void Update () {
-        RaycastHit2D hit = Physics2D.Raycast(rb.transform.position, -Vector2.up, 3.6f);
+        RaycastHit2D hit = Physics2D.Raycast(rb.transform.position, -Vector2.up, 10.6f);
         removeme.transform.position = hit.point;
 
          if (hit.collider != null)
