@@ -27,10 +27,10 @@ public class CharacterInputManager : MonoBehaviour
         Vector2 moveVector = moveAction.ReadValue<Vector2>();
         playerMovement.SidewaysMovement(moveVector.x);
 
-        if (moveVector.magnitude > 0f)
-        {
-            Debug.Log("MOVE IS ALWAYS ACTIVE BUT NOT THIS DEBUG LOG: " + moveVector);
-        }
+        // if (moveVector.magnitude > 0f)
+        // {
+        //     Debug.Log("MOVE IS ALWAYS ACTIVE BUT NOT THIS DEBUG LOG: " + moveVector);
+        // }
     }
 
     void OnEnable()
@@ -46,12 +46,17 @@ public class CharacterInputManager : MonoBehaviour
     private void OnVault(InputAction.CallbackContext callbackContext)
     {
         playerMovement.Vault();
-        Debug.Log("VAULT");
+        //Debug.Log("VAULT");
     }
 
     private void OnDash(InputAction.CallbackContext callbackContext)
     {
-        playerMovement.WeaponTriggered();
-        Debug.Log("DASH");
+        Vector2 moveVector = moveAction.ReadValue<Vector2>();
+        if (moveVector.magnitude > 0f)
+        {
+            playerMovement.Dash(moveVector);
+            //playerMovement.WeaponTriggered();
+            Debug.Log("DASH");
+        }
     }
 }
