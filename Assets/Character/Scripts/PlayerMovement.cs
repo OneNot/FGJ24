@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Rigidbody2D rb;
     [SerializeField] GameObject weapon;
     [SerializeField] GameObject weaponTip;
+    [SerializeField] GameObject midairVault;
+    [SerializeField] GameObject groundVault;
 
     //ground movement
     [SerializeField] float speed = 1;
@@ -122,7 +124,6 @@ public class PlayerMovement : MonoBehaviour
     public void Dash (Vector2 direction) {
         if (grounded == false && canDashAgain == true)
         {
-            Debug.Log(direction);
             rb.velocity = Vector2.zero;
             rb.gravityScale = 0;
 
@@ -150,25 +151,25 @@ public class PlayerMovement : MonoBehaviour
     
     public void WeaponTrigger ()
     {
-        Debug.Log("" + weaponOnCooldown + " " + canBounceAgain);
         if(weaponOnCooldown && canBounceAgain)
         {
             canBounceAgain = false;
             canDashAgain = true;
-
-            Vector2 direction = weaponTip.transform.position-transform.position;
-            if(grounded)
+            Vector2 direction = (grounded? groundVault : midairVault).transform.position-transform.position;
+            Debug.Log(direction);
+            /* if(grounded)
             {
+                groundedAngleBounce=0;
                 if (facingRight)
-                    direction = Quaternion.AngleAxis(groundedAngleBounce, direction).eulerAngles;
+                    direction = Quaternion.AngleAxis(groundedAngleBounce, Vector3.forward).eulerAngles * direction;
                 else
-                    direction = Quaternion.AngleAxis(groundedAngleBounce, direction).eulerAngles; //TODO here
+                    direction = Quaternion.AngleAxis(groundedAngleBounce, Vector3.forward).eulerAngles * direction;
             }
             else
             {
-                direction = Quaternion.AngleAxis(midairAngleBounce, direction).eulerAngles;
+                direction = Quaternion.AngleAxis(midairAngleBounce, Vector3.forward).eulerAngles;
             }
-            Debug.Log(direction);
+            Debug.Log(direction); */
 
             rb.AddForce(direction * (100 * bounceMult));
         }
