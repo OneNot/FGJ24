@@ -38,7 +38,7 @@ public class SplineFollow : MonoBehaviour
 
     private void Awake()
     {
-        splineToFollow = splineContainerToFollow.Spline;
+        splineToFollow = splineContainerToFollow.Spline; //TODO: Figure out the random nullreference error from this line despite working just fine
         moveDirection = initialMoveDirection == MoveDirection.Positive ? 1 : -1;
         realMoveSpeed = moveSpeed / splineToFollow.GetLength();
 
@@ -46,8 +46,6 @@ public class SplineFollow : MonoBehaviour
         currentPositionOnSpline = initialPositionOnSpline;
     }
 
-
-    //TODO: rotation?
 
     private void Update()
     {
