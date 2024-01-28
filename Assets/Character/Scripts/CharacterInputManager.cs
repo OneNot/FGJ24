@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,6 +15,8 @@ public class CharacterInputManager : MonoBehaviour
 
     private InputAction moveAction;
 
+    [SerializeField] public bool AllowInput;
+
     private void Awake()
     {
         gameplayActionMap = inputActionAsset.FindActionMap("gameplay");
@@ -24,8 +27,12 @@ public class CharacterInputManager : MonoBehaviour
 
     private void Update()
     {
-        Vector2 moveVector = moveAction.ReadValue<Vector2>();
-        playerMovement.SidewaysMovement(moveVector.x);
+        if (AllowInput)
+        {
+            Vector2 moveVector = moveAction.ReadValue<Vector2>();
+            playerMovement.SidewaysMovement(moveVector.x);
+        }
+        
 
         // if (moveVector.magnitude > 0f)
         // {
@@ -45,18 +52,22 @@ public class CharacterInputManager : MonoBehaviour
 
     private void OnVault(InputAction.CallbackContext callbackContext)
     {
-        playerMovement.Vault();
+        if (AllowInput)
+            playerMovement.Vault();
         //Debug.Log("VAULT");
     }
 
     private void OnDash(InputAction.CallbackContext callbackContext)
     {
-        Vector2 moveVector = moveAction.ReadValue<Vector2>();
-        if (moveVector.magnitude > 0f)
+        if(AllowInput)
         {
-            playerMovement.Dash(moveVector);
-            //playerMovement.WeaponTriggered();
-            Debug.Log("DASH");
+            Vector2 moveVector = moveAction.ReadValue<Vector2>();
+            if (moveVector.magnitude > 0f)
+            {
+                playerMovement.Dash(moveVector);
+                //playerMovement.WeaponTriggered();
+                Debug.Log("DASH");
+            }
         }
     }
 }

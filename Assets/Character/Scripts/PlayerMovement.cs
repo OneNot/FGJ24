@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject weaponTip;
     [SerializeField] GameObject midairVault;
     [SerializeField] GameObject groundVault;
+    [SerializeField] CharacterInputManager characterInputManager;
+    [SerializeField] GameObject faceSprite; 
 
     //ground movement
     [SerializeField] float speed = 1;
@@ -178,10 +180,46 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     //[SerializeField] private GameObject LevelStartUIThing;
+
+    [SerializeField] private InGameUIManager inGameUIManager;
     public void EntryAnimationEnded () 
     {
+        characterInputManager.AllowInput = true;
+        inGameUIManager.StartGameTimer();
+
         animator.SetBool("entryanimplaying", false);
         //LevelStartUIThing.SetActive(true); //do later if got time
+    }
+
+    int lives = 3;
+    bool canTakeDamage = true;
+    public void takeDamage (Vector3 enemyPosition) {
+        if(canTakeDamage)
+        {
+            faceSprite.transform.localScale = new Vector3(0.3f,0.3f,1);
+            ApplyKnockback(enemyPosition);
+            canTakeDamage = false;
+            StartCoroutine(InvulnPeriod());
+            lives--;
+            if (lives < 1)
+            {
+                characterInputManager.AllowInput = false;
+                //inGameUIManager.gameover
+            }
+        }
+    }
+
+    private void ApplyKnockback(Vector3 enemyPosition){
+        Vector2 direction = enemyPosition-transform.position;
+        rb.velocity = Vector3.zero;
+        rb.AddForce(-direction * 250);
+    }
+
+    private IEnumerator InvulnPeriod ()
+    {
+        yield return new WaitForSeconds(1f);
+        canTakeDamage = true;
+        faceSprite.transform.localScale = new Vector3(1,1,1);
     }
 
     private void OnDisable() {

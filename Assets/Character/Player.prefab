@@ -995,7 +995,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4492355337744864534}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1047,7 +1047,6 @@ GameObject:
   - component: {fileID: 1042270550417813872}
   - component: {fileID: 7146911779755283993}
   - component: {fileID: 5148789447609175858}
-  - component: {fileID: 2544537235205775833}
   - component: {fileID: 2318034005539104206}
   - component: {fileID: 2775747147339103602}
   m_Layer: 2
@@ -1118,6 +1117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 1042270550417813872}
   inputActionAsset: {fileID: -944628639613478452, guid: 9f26a6f701127ca4fa0d4dd3e7eb60f4, type: 3}
+  AllowInput: 0
 --- !u!114 &1042270550417813872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1137,6 +1137,8 @@ MonoBehaviour:
   weaponTip: {fileID: 2347393723533478396}
   midairVault: {fileID: 2465159356954834336}
   groundVault: {fileID: 2792706070639995895}
+  characterInputManager: {fileID: 6877494038546003833}
+  faceSprite: {fileID: 1304858816059436213}
   speed: 10
   maxWalkSpeed: 10
   grounded: 0
@@ -1149,6 +1151,7 @@ MonoBehaviour:
   canDashAgain: 0
   originalGravityScale: 2
   removeme: {fileID: 1786925775978561790}
+  inGameUIManager: {fileID: 0}
 --- !u!70 &7146911779755283993
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1205,14 +1208,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!81 &2544537235205775833
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4818189720198367691}
-  m_Enabled: 1
 --- !u!82 &2318034005539104206
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1324,19 +1319,19 @@ MonoBehaviour:
   rubberChickenNoises:
   - alias: RubberChicken1
     clip: {fileID: 8300000, guid: 9857b7ded8d88204d964e634444f54fa, type: 3}
-    volumeScale: 1
+    volumeScale: 0.3
   - alias: RubberChicken2
     clip: {fileID: 8300000, guid: b4b17954087fda946a0f6a47f6299f4a, type: 3}
-    volumeScale: 1
+    volumeScale: 0.3
   - alias: RubberChicken3
     clip: {fileID: 8300000, guid: 921d2f8d396c1ab46bad1e3742007623, type: 3}
-    volumeScale: 1
+    volumeScale: 0.3
   - alias: RubberChicken4
     clip: {fileID: 8300000, guid: 617336637391f6c42a22bc1a50ae669b, type: 3}
-    volumeScale: 1
+    volumeScale: 0.3
   - alias: RubberChicken5
     clip: {fileID: 8300000, guid: 78aa32f3337ed694c94ddae04f4edf2b, type: 3}
-    volumeScale: 1
+    volumeScale: 0.3
   dashNoises:
   - alias: Dash1
     clip: {fileID: 8300000, guid: b8b7e296ea47b4849bf12352a24428ed, type: 3}
@@ -1629,7 +1624,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8694788750577605433}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
