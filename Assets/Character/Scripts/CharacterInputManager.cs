@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -32,7 +31,7 @@ public class CharacterInputManager : MonoBehaviour
             Vector2 moveVector = moveAction.ReadValue<Vector2>();
             playerMovement.SidewaysMovement(moveVector.x);
         }
-        
+
 
         // if (moveVector.magnitude > 0f)
         // {
@@ -59,7 +58,7 @@ public class CharacterInputManager : MonoBehaviour
 
     private void OnDash(InputAction.CallbackContext callbackContext)
     {
-        if(AllowInput)
+        if (AllowInput)
         {
             Vector2 moveVector = moveAction.ReadValue<Vector2>();
             if (moveVector.magnitude > 0f)
