@@ -125,7 +125,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1393725907390621554}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -605,7 +605,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2465159356954834336}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -689,7 +689,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2792706070639995895}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -930,7 +930,7 @@ Transform:
   m_GameObject: {fileID: 4492355337744864534}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.00000011920926, w: 1}
-  m_LocalPosition: {x: 0.0007505417, y: 17.338547, z: 0}
+  m_LocalPosition: {x: 0.0007505417, y: 17.33855, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1131,6 +1131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 5148789447609175858}
+  playerAudio: {fileID: 2775747147339103602}
   rb: {fileID: 7190768229857900434}
   weapon: {fileID: 1393725907390621554}
   weaponTip: {fileID: 2347393723533478396}
@@ -1144,9 +1145,7 @@ MonoBehaviour:
   canBounceAgain: 1
   spinnercount: 0
   bounceMult: 2.5
-  groundedAngleBounce: 75
-  midairAngleBounce: -90
-  DashMult: 2000
+  DashMult: 4000
   canDashAgain: 0
   originalGravityScale: 2
   removeme: {fileID: 1786925775978561790}
@@ -1354,16 +1353,16 @@ MonoBehaviour:
   shoeNoises:
   - alias: ShoeNoise1
     clip: {fileID: 8300000, guid: 9bbc29b3a8ed0aa4ca5d020a1549f264, type: 3}
-    volumeScale: 1
+    volumeScale: 0.1
   - alias: ShoeNoise2
     clip: {fileID: 8300000, guid: e0fbfab33f1478443b4c0e3cb79d262d, type: 3}
-    volumeScale: 1
+    volumeScale: 0.1
   - alias: ShoeNoise3
     clip: {fileID: 8300000, guid: 5c2dcfa7ac76b914ca9ccd653859b71b, type: 3}
-    volumeScale: 1
+    volumeScale: 0.1
   - alias: ShoeNoise4
     clip: {fileID: 8300000, guid: 98f597edf702c124b9a07872ada69a08, type: 3}
-    volumeScale: 1
+    volumeScale: 0.1
 --- !u!1 &5513176150753548265
 GameObject:
   m_ObjectHideFlags: 0
@@ -1565,7 +1564,7 @@ Transform:
   m_GameObject: {fileID: 8694788750577605433}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.00000011920926, w: 1}
-  m_LocalPosition: {x: -0.0039441586, y: 9.498871, z: 0}
+  m_LocalPosition: {x: -0.003944159, y: 9.498871, z: 0}
   m_LocalScale: {x: 1, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

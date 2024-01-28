@@ -6,12 +6,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
-    //animation
-    [SerializeField] private Animator animator;
-
-
     //references
+    [SerializeField] private Animator animator;
+    [SerializeField] private PlayerAudio playerAudio;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] GameObject weapon;
     [SerializeField] GameObject weaponTip;
@@ -51,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
          if (hit.collider != null)
          {
+            weaponAttackAvailable = true;
             if (grounded == false)
             {
                 animator.SetBool("grounded", true);
@@ -116,14 +114,16 @@ public class PlayerMovement : MonoBehaviour
     private void TurnAround () {
         transform.Rotate(new Vector3(0,180,0));
     }
+    bool weaponAttackAvailable = true;
     public void Vault () {
-        //if not grounded add movement forwards and do below
-        WeaponAttackPlay();
+        if (weaponAttackAvailable)
+            WeaponAttackPlay();
     }
     
     public void Dash (Vector2 direction) {
         if (grounded == false && canDashAgain == true)
         {
+            playerAudio.PlayRandomDash();
             rb.velocity = Vector2.zero;
             rb.gravityScale = 0;
 
@@ -141,6 +141,7 @@ public class PlayerMovement : MonoBehaviour
         
     private void WeaponAttackPlay () 
     {
+        weaponAttackAvailable = false;
         if (weaponOnCooldown == false)
         {
             canBounceAgain = true;
@@ -153,10 +154,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if(weaponOnCooldown && canBounceAgain)
         {
+            weaponAttackAvailable = true;
+            playerAudio.PlayRandomRubberChicken();
             canBounceAgain = false;
             canDashAgain = true;
             Vector2 direction = (grounded? groundVault : midairVault).transform.position-transform.position;
-            Debug.Log(direction);
+            
             /* if(grounded)
             {
                 groundedAngleBounce=0;
@@ -173,6 +176,12 @@ public class PlayerMovement : MonoBehaviour
 
             rb.AddForce(direction * (100 * bounceMult));
         }
+    }
+    //[SerializeField] private GameObject LevelStartUIThing;
+    public void EntryAnimationEnded () 
+    {
+        animator.SetBool("entryanimplaying", false);
+        //LevelStartUIThing.SetActive(true); //do later if got time
     }
 
     private void OnDisable() {
