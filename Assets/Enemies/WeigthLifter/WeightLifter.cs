@@ -5,7 +5,6 @@ using UnityEngine.Scripting;
 
 public class WeightLifter : MonoBehaviour
 {
-
     private enum WeightMoveDirection
     {
         Top,
@@ -36,9 +35,12 @@ public class WeightLifter : MonoBehaviour
     [SerializeField]
     private float distanceFromTopEyesClosed = 1f;
 
+    private WeightLifterAudio audio;
+
 
     private void Awake()
     {
+        audio = GetComponent<WeightLifterAudio>();
         currentWeightMoveDirection = WeightMoveDirection.Top;
         currentWeightTargetLocalPosition = weightTopLocalPosition;
         currentMoveSmoothTime = weightMoveSmoothTimeUp;
@@ -66,9 +68,15 @@ public class WeightLifter : MonoBehaviour
         if (currentWeightMoveDirection == WeightMoveDirection.Top && Vector3.Distance(weightTransform.localPosition, weightTopLocalPosition) <= distanceFromTopEyesClosed)
         {
             if (faceSpriteRenderer.sprite != faceStruggle)
+            {
                 faceSpriteRenderer.sprite = faceStruggle;
+                audio.PlayRandomLift();
+            }
         }
         else if (faceSpriteRenderer.sprite != faceNeutral)
+        {
             faceSpriteRenderer.sprite = faceNeutral;
+            audio.PlayRandomDrop();
+        }
     }
 }

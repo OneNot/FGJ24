@@ -6,19 +6,10 @@ using UnityEngine;
 
 public class PlayerAudio : MonoBehaviour
 {
-    [Serializable]
-    private class AudioClipStruct
-    {
-        public string alias;
-        public AudioClip clip;
-        [Range(0f, 1f)]
-        public float volumeScale = 1f;
-    }
-
     [SerializeField]
-    private List<AudioClipStruct> rubberChickenNoises = new List<AudioClipStruct>(),
-    dashNoises = new List<AudioClipStruct>(),
-    shoeNoises = new List<AudioClipStruct>();
+    private List<AudioClipStructure> rubberChickenNoises = new List<AudioClipStructure>(),
+    dashNoises = new List<AudioClipStructure>(),
+    shoeNoises = new List<AudioClipStructure>();
 
     private AudioSource auS;
 

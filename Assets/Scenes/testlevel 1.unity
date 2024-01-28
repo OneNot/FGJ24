@@ -560,6 +560,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2775747147339103602, guid: dba5972b0d07e55439e8c7678a86ef61, type: 3}
+      propertyPath: shoeNoises.Array.data[0].volumeScale
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2775747147339103602, guid: dba5972b0d07e55439e8c7678a86ef61, type: 3}
+      propertyPath: shoeNoises.Array.data[1].volumeScale
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2775747147339103602, guid: dba5972b0d07e55439e8c7678a86ef61, type: 3}
+      propertyPath: shoeNoises.Array.data[2].volumeScale
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2775747147339103602, guid: dba5972b0d07e55439e8c7678a86ef61, type: 3}
+      propertyPath: shoeNoises.Array.data[3].volumeScale
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4818189720198367691, guid: dba5972b0d07e55439e8c7678a86ef61, type: 3}
       propertyPath: m_Name
       value: Player
