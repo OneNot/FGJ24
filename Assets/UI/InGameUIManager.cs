@@ -59,10 +59,12 @@ public class InGameUIManager : MonoBehaviour
     }
     public void Quit()
     {
+        Debug.Log("QUIT");
         SceneManager.LoadScene(0);
     }
     public void Retry()
     {
+        Debug.Log("RETRY");
         SceneManager.LoadScene(1);
     }
 
