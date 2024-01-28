@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-class AudioClipStructure
+public class AudioClipStructure
 {
     public string alias;
     public AudioClip clip;
