@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -40,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        lives = 3;
+        inGameUIManager.SetLifeAmount(lives);
         weaponOnCooldown = false;
         canBounceAgain = true;
     }
@@ -67,6 +70,8 @@ public class PlayerMovement : MonoBehaviour
                 grounded = false;
             }
          }
+         inGameUIManager.SetDashState(canDashAgain && grounded == false);
+         inGameUIManager.SetVaultState(!weaponOnCooldown && canBounceAgain && weaponAttackAvailable);
         //angle = Vector2.Angle(transform.right, weaponTip.transform.position - transform.position);
         //Debug.Log(angle);
     }
@@ -196,6 +201,7 @@ public class PlayerMovement : MonoBehaviour
     public void takeDamage (Vector3 enemyPosition) {
         if(canTakeDamage)
         {
+            inGameUIManager.SetLifeAmount(lives);
             faceSprite.transform.localScale = new Vector3(0.3f,0.3f,1);
             ApplyKnockback(enemyPosition);
             canTakeDamage = false;
