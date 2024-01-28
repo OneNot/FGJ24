@@ -51,7 +51,7 @@ public class InGameUIManager : MonoBehaviour
     {
         StopGameTimer();
         gameOverPopupGO.SetActive(true);
-        gameOverTitleTextElement.text = isWin ? "You Win" : "Game Over";
+        gameOverTitleTextElement.text = isWin ? "You Win" : "Game Over\nYou got laughed at :(";
 
         float seconds = (float)Math.Round(gameTimeElapsed % 60, 2);
         int minutes = (int)gameTimeElapsed / 60;
