@@ -201,16 +201,16 @@ public class PlayerMovement : MonoBehaviour
     public void takeDamage (Vector3 enemyPosition) {
         if(canTakeDamage)
         {
-            inGameUIManager.SetLifeAmount(lives);
             faceSprite.transform.localScale = new Vector3(0.3f,0.3f,1);
             ApplyKnockback(enemyPosition);
             canTakeDamage = false;
             StartCoroutine(InvulnPeriod());
             lives--;
+            inGameUIManager.SetLifeAmount(lives);
             if (lives < 1)
             {
                 characterInputManager.AllowInput = false;
-                //inGameUIManager.gameover
+                inGameUIManager.GameOver(false);
             }
         }
     }
