@@ -30,6 +30,10 @@ public class MainmenuNav : MonoBehaviour
         Debug.Log("Start Game");
         SceneManager.LoadScene(1);
     }
+    public void ToggleCredits()
+    {
+        credits.SetActive(!credits.activeInHierarchy);
+    }
     public void Quit()
     {
         Debug.Log("QUIT");
