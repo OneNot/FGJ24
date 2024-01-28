@@ -6,6 +6,8 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class InGameUIManager : MonoBehaviour
 {
@@ -19,16 +21,23 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField]
     private TMP_Text timeTextIndicator;
 
+    [SerializeField]
+    private GameObject gameOverPopupGO;
+    [SerializeField]
+    private TMP_Text gameOverTitleTextElement, gameOverTimeTextElement;
+
     private float gameTimeElapsed = 0f, gameTimeStartTimeStamp = 0f;
 
     private bool isTimerActive = false;
 
     private void Awake()
     {
+        gameOverPopupGO.SetActive(false);
     }
 
     private void Update()
     {
+
         if (isTimerActive)
         {
             gameTimeElapsed = Time.time - gameTimeStartTimeStamp;
@@ -36,6 +45,25 @@ public class InGameUIManager : MonoBehaviour
             int minutes = (int)gameTimeElapsed / 60;
             timeTextIndicator.text = "Time: " + minutes.ToString("00") + ":" + seconds.ToString().Replace(".", ":").Replace(",", ":");
         }
+    }
+
+    public void GameOver(bool isWin)
+    {
+        StopGameTimer();
+        gameOverPopupGO.SetActive(true);
+        gameOverTitleTextElement.text = isWin ? "You Win" : "Game Over";
+
+        float seconds = (float)Math.Round(gameTimeElapsed % 60, 2);
+        int minutes = (int)gameTimeElapsed / 60;
+        gameOverTimeTextElement.text = "Time: " + minutes.ToString("00") + ":" + seconds.ToString().Replace(".", ":").Replace(",", ":");
+    }
+    public void Quit()
+    {
+        SceneManager.LoadScene(0);
+    }
+    public void Retry()
+    {
+        SceneManager.LoadScene(1);
     }
 
     public void SetDashState(bool setEnabled)
